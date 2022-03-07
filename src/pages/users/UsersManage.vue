@@ -1,4 +1,7 @@
 <template>
+	<div class="pt-3 pb-2 mb-1 border-bottom">
+		<router-link to="/users/create" class="btn btn-sm btn-outline-secondary">Add</router-link>
+	</div>
 	<div class="table-responsive">
 		<table class="table table-striped table-sm">
 			<thead>
@@ -11,14 +14,14 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="user in users" :key="user.id">
+				<tr v-for="user in users" :key="user.id" class="align-middle">
 					<td>{{ user.id }}</td>
 					<td>{{ user.first_name }} {{ user.last_name }}</td>
 					<td>{{ user.email }}</td>
 					<td>{{ user.role.name }}</td>
 					<td>
-						<div>
-							<a href="javascript:void(0)" @click="del(user.id)">Delete</a>
+						<div class="btn-group mr-2">
+							<a href="javascript:void(0)" class="btn btn-sm btn-outline-secondary" @click="del(user.id)">Delete</a>
 						</div>
 					</td>
 				</tr>
