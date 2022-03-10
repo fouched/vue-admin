@@ -29,51 +29,29 @@
 			</tbody>
 		</table>
 	</div>
-	<nav>
-		<ul class="pagination">
-			<li class="page-item">
-				<a class="page-link" href="javascript:void(0)" @click="prev">Previous</a>
-			</li>
-			<li class="page-item">
-				<a class="page-link" href="javascript:void(0)" @click="next">Next</a>
-			</li>
-		</ul>
-	</nav>
+<TablePaginator :lastPage="lastPage" @pageChanged="load($event)"/>
 </template>
 
 <script lang="ts">
 import axios from 'axios'
-import { defineComponent, onMounted, ref, watch } from 'vue'
+import { defineComponent, onMounted, ref } from 'vue'
 import { User } from '../../models/User'
+import TablePaginator from '../../components/TablePaginator.vue'
 
 export default defineComponent({
 	name: 'UsersManage',
+  components: { TablePaginator},
 	setup() {
 		const users = ref([])
-		const page = ref(1)
 		const lastPage = ref(0)
 
-		const load = async () => {
-			const { data } = await axios.get(`users?page=${page.value}`)
+		const load = async (page = 1) => {
+			const { data } = await axios.get(`users?page=${page}`)
 			users.value = data.data
 			lastPage.value = data.meta.last_page
 		}
 
 		onMounted(load)
-
-		watch(page, load) // call a function if the watched variable changes
-
-		const next = async () => {
-			if (page.value < lastPage.value) {
-				page.value++
-			}
-		}
-
-		const prev = async () => {
-			if (page.value > 1) {
-				page.value--
-			}
-		}
 
 		const del = async (id: number) => {
 			if(confirm('Are you sure?')) {
@@ -82,7 +60,7 @@ export default defineComponent({
 			}
 		}
 
-		return { users, next, prev, del }
+		return { users, lastPage, del, load }
 	},
 })
 </script>
