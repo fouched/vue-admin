@@ -10,6 +10,9 @@ import RolesManage from '../pages/roles/RolesManage.vue'
 import RolesCreate from '../pages/roles/RolesCreate.vue'
 import RolesEdit from '../pages/roles/RolesEdit.vue'
 import ProductsManage from '../pages/products/ProductsManage.vue'
+import ProductsCreate from '../pages/products/ProductsCreate.vue'
+import ProductsEdit from '../pages/products/ProductsEdit.vue'
+import OrdersManage from '../pages/orders/OrdersManage.vue'
 
 const routes: Array<RouteRecordRaw> = [
 	{ path: '/register', component: RegisterUser },
@@ -25,7 +28,10 @@ const routes: Array<RouteRecordRaw> = [
 			{ path: '/roles', component: RolesManage },
 			{ path: '/roles/create', component: RolesCreate },
 			{ path: '/roles/:id/edit', component: RolesEdit },
-      { path: '/products', component: ProductsManage },
+			{ path: '/products', component: ProductsManage },
+			{ path: '/products/create', component: ProductsCreate },
+			{ path: '/products/:id/edit', component: ProductsEdit },
+			{ path: '/orders', component: OrdersManage },
 		],
 	},
 ]
