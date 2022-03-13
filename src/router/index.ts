@@ -1,5 +1,6 @@
-import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router'
 import PageWrapper from '../pages/PageWrapper.vue'
+import ProfileEdit from '../pages/ProfileEdit.vue'
 import MainDashboard from '../pages/MainDashboard.vue'
 import RegisterUser from '../pages/RegisterUser.vue'
 import LoginUser from '../pages/LoginUser.vue'
@@ -15,30 +16,31 @@ import ProductsEdit from '../pages/products/ProductsEdit.vue'
 import OrdersManage from '../pages/orders/OrdersManage.vue'
 
 const routes: Array<RouteRecordRaw> = [
-	{ path: '/register', component: RegisterUser },
-	{ path: '/login', component: LoginUser },
-	{
-		path: '',
-		component: PageWrapper,
-		children: [
-			{ path: '', component: MainDashboard },
-			{ path: '/users', component: UsersManage },
-			{ path: '/users/create', component: UsersCreate },
-			{ path: '/users/:id/edit', component: UsersEdit },
-			{ path: '/roles', component: RolesManage },
-			{ path: '/roles/create', component: RolesCreate },
-			{ path: '/roles/:id/edit', component: RolesEdit },
-			{ path: '/products', component: ProductsManage },
-			{ path: '/products/create', component: ProductsCreate },
-			{ path: '/products/:id/edit', component: ProductsEdit },
-			{ path: '/orders', component: OrdersManage },
-		],
-	},
+  {path: '/register', component: RegisterUser},
+  {path: '/login', component: LoginUser},
+  {
+    path: '',
+    component: PageWrapper,
+    children: [
+      {path: '', component: MainDashboard},
+      {path: '/profile', component: ProfileEdit},
+      {path: '/users', component: UsersManage},
+      {path: '/users/create', component: UsersCreate},
+      {path: '/users/:id/edit', component: UsersEdit},
+      {path: '/roles', component: RolesManage},
+      {path: '/roles/create', component: RolesCreate},
+      {path: '/roles/:id/edit', component: RolesEdit},
+      {path: '/products', component: ProductsManage},
+      {path: '/products/create', component: ProductsCreate},
+      {path: '/products/:id/edit', component: ProductsEdit},
+      {path: '/orders', component: OrdersManage},
+    ],
+  },
 ]
 
 const router = createRouter({
-	history: createWebHistory(process.env.BASE_URL),
-	routes,
+  history: createWebHistory(process.env.BASE_URL),
+  routes,
 })
 
 export default router
